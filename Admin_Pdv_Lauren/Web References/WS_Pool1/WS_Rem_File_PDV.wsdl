@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="calc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="a" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="b" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="calcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="calcResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="writeTest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="writeTestResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemMdt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nameFile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pathSortie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FormatSortie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pdv" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nameListe" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemMdtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemMdtResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Coucou">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codehex" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoucouResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CoucouResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueFaire">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codehex" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueFaireResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueFaireResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MajEtapeScenario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codehex" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idScenario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="etape" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MajEtapeScenarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MajEtapeScenarioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MajCodeErreurRecepteur">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codehex" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idScenario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CodeErreur" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MajCodeErreurRecepteurResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MajCodeErreurRecepteurResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportBDD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codehex" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idScenario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bloc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportBDDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ImportBDDResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="calcSoapIn">
+    <wsdl:part name="parameters" element="tns:calc" />
+  </wsdl:message>
+  <wsdl:message name="calcSoapOut">
+    <wsdl:part name="parameters" element="tns:calcResponse" />
+  </wsdl:message>
+  <wsdl:message name="writeTestSoapIn">
+    <wsdl:part name="parameters" element="tns:writeTest" />
+  </wsdl:message>
+  <wsdl:message name="writeTestSoapOut">
+    <wsdl:part name="parameters" element="tns:writeTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemMdtSoapIn">
+    <wsdl:part name="parameters" element="tns:RemMdt" />
+  </wsdl:message>
+  <wsdl:message name="RemMdtSoapOut">
+    <wsdl:part name="parameters" element="tns:RemMdtResponse" />
+  </wsdl:message>
+  <wsdl:message name="CoucouSoapIn">
+    <wsdl:part name="parameters" element="tns:Coucou" />
+  </wsdl:message>
+  <wsdl:message name="CoucouSoapOut">
+    <wsdl:part name="parameters" element="tns:CoucouResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueFaireSoapIn">
+    <wsdl:part name="parameters" element="tns:QueFaire" />
+  </wsdl:message>
+  <wsdl:message name="QueFaireSoapOut">
+    <wsdl:part name="parameters" element="tns:QueFaireResponse" />
+  </wsdl:message>
+  <wsdl:message name="MajEtapeScenarioSoapIn">
+    <wsdl:part name="parameters" element="tns:MajEtapeScenario" />
+  </wsdl:message>
+  <wsdl:message name="MajEtapeScenarioSoapOut">
+    <wsdl:part name="parameters" element="tns:MajEtapeScenarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="MajCodeErreurRecepteurSoapIn">
+    <wsdl:part name="parameters" element="tns:MajCodeErreurRecepteur" />
+  </wsdl:message>
+  <wsdl:message name="MajCodeErreurRecepteurSoapOut">
+    <wsdl:part name="parameters" element="tns:MajCodeErreurRecepteurResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportBDDSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportBDD" />
+  </wsdl:message>
+  <wsdl:message name="ImportBDDSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportBDDResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WS_Rem_File_PDVSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="calc">
+      <wsdl:input message="tns:calcSoapIn" />
+      <wsdl:output message="tns:calcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="writeTest">
+      <wsdl:input message="tns:writeTestSoapIn" />
+      <wsdl:output message="tns:writeTestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemMdt">
+      <wsdl:input message="tns:RemMdtSoapIn" />
+      <wsdl:output message="tns:RemMdtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Coucou">
+      <wsdl:input message="tns:CoucouSoapIn" />
+      <wsdl:output message="tns:CoucouSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueFaire">
+      <wsdl:input message="tns:QueFaireSoapIn" />
+      <wsdl:output message="tns:QueFaireSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MajEtapeScenario">
+      <wsdl:input message="tns:MajEtapeScenarioSoapIn" />
+      <wsdl:output message="tns:MajEtapeScenarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MajCodeErreurRecepteur">
+      <wsdl:input message="tns:MajCodeErreurRecepteurSoapIn" />
+      <wsdl:output message="tns:MajCodeErreurRecepteurSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportBDD">
+      <wsdl:input message="tns:ImportBDDSoapIn" />
+      <wsdl:output message="tns:ImportBDDSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WS_Rem_File_PDVSoap" type="tns:WS_Rem_File_PDVSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="calc">
+      <soap:operation soapAction="http://tempuri.org/calc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeTest">
+      <soap:operation soapAction="http://tempuri.org/writeTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemMdt">
+      <soap:operation soapAction="http://tempuri.org/RemMdt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Coucou">
+      <soap:operation soapAction="http://tempuri.org/Coucou" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueFaire">
+      <soap:operation soapAction="http://tempuri.org/QueFaire" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MajEtapeScenario">
+      <soap:operation soapAction="http://tempuri.org/MajEtapeScenario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MajCodeErreurRecepteur">
+      <soap:operation soapAction="http://tempuri.org/MajCodeErreurRecepteur" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportBDD">
+      <soap:operation soapAction="http://tempuri.org/ImportBDD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WS_Rem_File_PDVSoap12" type="tns:WS_Rem_File_PDVSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="calc">
+      <soap12:operation soapAction="http://tempuri.org/calc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeTest">
+      <soap12:operation soapAction="http://tempuri.org/writeTest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemMdt">
+      <soap12:operation soapAction="http://tempuri.org/RemMdt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Coucou">
+      <soap12:operation soapAction="http://tempuri.org/Coucou" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueFaire">
+      <soap12:operation soapAction="http://tempuri.org/QueFaire" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MajEtapeScenario">
+      <soap12:operation soapAction="http://tempuri.org/MajEtapeScenario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MajCodeErreurRecepteur">
+      <soap12:operation soapAction="http://tempuri.org/MajCodeErreurRecepteur" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportBDD">
+      <soap12:operation soapAction="http://tempuri.org/ImportBDD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WS_Rem_File_PDV">
+    <wsdl:port name="WS_Rem_File_PDVSoap" binding="tns:WS_Rem_File_PDVSoap">
+      <soap:address location="http://10.62.250.220:8585/WS_Rem_File_PDV.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WS_Rem_File_PDVSoap12" binding="tns:WS_Rem_File_PDVSoap12">
+      <soap12:address location="http://10.62.250.220:8585/WS_Rem_File_PDV.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

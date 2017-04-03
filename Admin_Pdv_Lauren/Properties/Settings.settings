@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Admin_Pdv_Lauren.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Admin_Pdv_Lauren_WS_Pool1_WS_Rem_File_PDV" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.62.250.220:8585/WS_Rem_File_PDV.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
