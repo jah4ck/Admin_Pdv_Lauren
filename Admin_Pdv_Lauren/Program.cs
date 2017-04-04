@@ -13,12 +13,16 @@ namespace Admin_Pdv_Lauren
         public static WS_Pool1.WS_Rem_File_PDV ws = new WS_Pool1.WS_Rem_File_PDV();
         public static string codehex = Dns.GetHostName().Substring(2,4);
         public static string IdScenario = "";
-        public static string TypeRem = "";
+        public static string Rem = "";
         public static string ProgramExec = "";
         public static string repDest = @"C:\TEMP\PRG_P3\";
         public static string repResult = @"C:\TEMP\LOG_P3\";
         public static int CodeErreur = 0;
         public static string FileResult = "";
+        public static string typeRem = "";
+        public static string FileSortieRem = "";
+        public static string pathSortieRem = "";
+        public static string FormatSortie = "";
         /* code erreur :
          * 1 = suppression en erreur des répertoire
          * 2 = erreur de téléchargement d'un fichier
@@ -35,6 +39,10 @@ namespace Admin_Pdv_Lauren
          * 13 = erreur d'importation sql
          * 14 = erreur de déplacement des fichier sur le serveur prod
          * 15 = création impossible du directory sur le serveur prod
+         * 16 = maj WS etape rem BDD
+         * 17 = maj WS etape rem File
+         * 18 = Ecriture du fichier
+         * 19 = La remontée est vide
          * */
 
         static void Main(string[] args)
@@ -125,8 +133,12 @@ namespace Admin_Pdv_Lauren
                             if (columnInfoParam.Length > 2)
                             {
                                 IdScenario = columnInfoParam[0];
-                                TypeRem = columnInfoParam[1];
+                                Rem = columnInfoParam[1];
                                 FileResult = columnInfoParam[5];
+                                typeRem = columnInfoParam[6];
+                                FileSortieRem = columnInfoParam[7];
+                                pathSortieRem = columnInfoParam[8];
+                                FormatSortie = columnInfoParam[9];
                                 if (columnInfoParam[4].ToString() == "1" || columnInfoParam[4].ToString().ToUpper()=="TRUE")
                                 {
                                     ProgramExec = columnInfoParam[2];
@@ -185,7 +197,7 @@ namespace Admin_Pdv_Lauren
                             break;
                         }
                     }
-                    MyExecProgram.ExecProgram(ProgramExec, TypeRem);
+                    MyExecProgram.ExecProgram(ProgramExec, Rem);
                 }
                 catch (Exception err)
                 {
@@ -195,8 +207,8 @@ namespace Admin_Pdv_Lauren
                 
             }
             #endregion
-            #region remonté des données
-            if (CodeErreur==0 && TypeRem=="1")
+            #region remonté des données BDD
+            if (CodeErreur==0 && Rem=="1" && typeRem=="1")
             {
                 if (FileResult != "N/A")
                 {
@@ -206,7 +218,7 @@ namespace Admin_Pdv_Lauren
                         tentativews++;
                         if (tentativews == 5)
                         {
-                            CodeErreur = 7;
+                            CodeErreur = 16;
                             break;
                         }
                     }
@@ -263,6 +275,61 @@ namespace Admin_Pdv_Lauren
                 }
             }
             #endregion
+
+            #region remontée des données fichier plat
+            if (CodeErreur==0 && Rem=="1" && typeRem=="2")
+            {
+                if (FileResult!="N/A" && FileSortieRem!="N/A" && pathSortieRem!="N/A" && FormatSortie!="N/A")
+                {
+                    int tentativews = 0;
+                    while (!ws.MajEtapeScenario(codehex, IdScenario, "REMFILE"))
+                    {
+                        tentativews++;
+                        if (tentativews == 5)
+                        {
+                            CodeErreur = 17;
+                            break;
+                        }
+                    }
+                    Console.WriteLine("Je remonte les données");
+                    try
+                    {
+                        if (File.Exists(repResult + FileResult))
+                        {
+                            string bloc = File.ReadAllText(repResult + FileResult).TrimEnd();
+                            int tentative = 0;
+                            while (Program.ws.RemMdt(FileSortieRem, bloc, pathSortieRem, FormatSortie, codehex, "") != true)
+                            {
+                                tentative++;
+                                Thread.Sleep(1000);
+                                if (tentative == 5)
+                                {
+                                    CodeErreur = 18;
+                                    break;
+                                }
+                            }
+                            //ajouter une étape "TERMINE VIDE" voulant signifier que tout s'est bien déroulé mais que le résultat est vide
+                            // faire de même pour la remontée en BDD
+                            if (bloc.Length<4)
+                            {
+                                CodeErreur = 19;//la remontée est vide
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Le fichier attendu n'est pas présent : " + repResult + FileResult);
+                            CodeErreur = 11;
+                        }
+                    }
+                    catch (Exception err)
+                    {
+                        Console.WriteLine(err.Message);
+                        CodeErreur = 12;
+                    }
+
+                }
+            }
+            #endregion
             #region traitement de fin (purge)
             try
             {
@@ -307,7 +374,20 @@ namespace Admin_Pdv_Lauren
                             break;
                         }
                     }
-                    
+                }
+                if (CodeErreur==19)
+                {
+                     int tentativews = 0;
+                    while (!ws.MajEtapeScenario(codehex, IdScenario, "TERMINE VIDE"))
+                    {
+                        tentativews++;
+                        CodeErreur = 0;
+                        if (tentativews == 5)
+                        {
+                            CodeErreur = 8;
+                            break;
+                        }
+                    }
                 }
                 Thread.Sleep(1000);
                 int intscenar;
