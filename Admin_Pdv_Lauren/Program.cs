@@ -226,33 +226,41 @@ namespace Admin_Pdv_Lauren
                         if (File.Exists(repResult + FileResult))
                         {
                             string bloc = File.ReadAllText(repResult + FileResult).TrimEnd();
-                            int tentative = 0;
-                            int resultWS = 5;
-                            while (resultWS!=0)
+                            if (bloc.Length > 2)
                             {
-                                Console.WriteLine(resultWS);
-                                resultWS = ws.ImportBDD(codehex, IdScenario, bloc);
-                                if (resultWS==2)
+                                int tentative = 0;
+                                int resultWS = 5;
+                                while (resultWS != 0)
                                 {
-                                    CodeErreur = 13;
-                                    break;
+                                    Console.WriteLine(resultWS);
+                                    resultWS = ws.ImportBDD(codehex, IdScenario, bloc);
+                                    if (resultWS == 2)
+                                    {
+                                        CodeErreur = 13;
+                                        break;
+                                    }
+                                    if (resultWS == 3)
+                                    {
+                                        CodeErreur = 14;
+                                        break;
+                                    }
+                                    if (resultWS == 4)
+                                    {
+                                        CodeErreur = 15;
+                                        break;
+                                    }
+                                    tentative++;
+                                    if (tentative == 5)
+                                    {
+                                        CodeErreur = 10;
+                                        break;
+                                    }
                                 }
-                                if (resultWS==3)
-                                {
-                                    CodeErreur = 14;
-                                    break;
-                                }
-                                if (resultWS == 4)
-                                {
-                                    CodeErreur = 15;
-                                    break;
-                                }
-                                tentative++;
-                                if (tentative==5)
-                                {
-                                    CodeErreur = 10;
-                                    break;
-                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Aucune donnée remontée");
+                                CodeErreur = 19;
                             }
                         }
                         else
