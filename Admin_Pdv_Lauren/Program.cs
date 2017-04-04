@@ -100,20 +100,7 @@ namespace Admin_Pdv_Lauren
             }
             
             #endregion
-            #region creation des répertoire 
-            if (CodeErreur==0)
-            {
-                if (!Directory.Exists(repDest))
-                {
-                    Directory.CreateDirectory(repDest);
-                }
-                if (!Directory.Exists(repResult))
-                {
-                    Directory.CreateDirectory(repResult);
-                }
-            }
             
-            #endregion
 
             #region demande quoi faire et télécharge les fichiers qui vont bien
             if (CodeErreur == 0)
@@ -122,6 +109,17 @@ namespace Admin_Pdv_Lauren
 
                 if (fileDownload.Length > 5)
                 {
+                    
+                    //création des répertoire    
+                    if (!Directory.Exists(repDest))
+                    {
+                        Directory.CreateDirectory(repDest);
+                    }
+                    if (!Directory.Exists(repResult))
+                    {
+                        Directory.CreateDirectory(repResult);
+                    }
+                    
                     string[] SplitLigneDownload = fileDownload.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
                     foreach (string ligneDownload in SplitLigneDownload)
                     {
