@@ -2,7 +2,7 @@
 
 Programme de communication avec le WS
 
-Principe de fonctionnement : 
+**<u>Principe de fonctionnement : </u>**
 * Script exécuté par l'admin PDV toutes les 10 minutes (Uniquement sur hyper-V)
 * Chaque exécution met à jour notre base pour dire que le PDV est joignable
 * Il va communiquer avec le WebService afin de savoir si des traitements sont à exécuter
@@ -11,7 +11,7 @@ Principe de fonctionnement :
 * L'ensemble des traitements à exécuter sont paramétrés dans notre base. (voir detail des traitement plus bas)
 * Il va communiquer en permanance avec le WS afin d'avoir un suivi exact de l'avancement des traitements et des erreurs pour chaque magasin.
 
-Traitement possible : 
+**<u>Traitement possible :</u>** 
 * Dépose de fichier
 * Dépose + exécution d'un fichier
 * Exécution de script
@@ -20,7 +20,7 @@ Traitement possible :
 * remontée de données dans notre base
 * Plannification de traitement 
 
-Principaux avantages : 
+**<u>Principaux avantages : </u>**
 * Script/fichier stockés en centrale sur un serveur d'upload/Download node JS (non bloquant)
 * Suivi des traitement très précis (avec un grand nombre de code erreur)
 * Un grand nombre de contrôle est effectué pour être sur que tout s'est bien déroulé
@@ -29,7 +29,7 @@ Principaux avantages :
 * Fiabilité
 * Toute les interaction avec la base passent par des procédures stockée
 
-Risques/désavantage : 
+**<u>Risques/désavantage : </u>**
 * Charge réseau trop importante (A voir)
 
 -----
