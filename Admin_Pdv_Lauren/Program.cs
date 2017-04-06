@@ -23,6 +23,8 @@ namespace Admin_Pdv_Lauren
         public static string FileSortieRem = "";
         public static string pathSortieRem = "";
         public static string FormatSortie = "";
+        public static string CompteUser = "";
+        public static string CompteMdp = "";
         /* code erreur :
          * 1 = suppression en erreur des répertoire
          * 2 = erreur de téléchargement d'un fichier
@@ -128,7 +130,7 @@ namespace Admin_Pdv_Lauren
                         {
                             Console.WriteLine(ligneDownload);
                             string[] columnInfoParam = ligneDownload.Split(';');
-                            if (columnInfoParam.Length > 2)
+                            if (columnInfoParam.Length == 12)
                             {
                                 IdScenario = columnInfoParam[0];
                                 Rem = columnInfoParam[1];
@@ -137,6 +139,8 @@ namespace Admin_Pdv_Lauren
                                 FileSortieRem = columnInfoParam[7];
                                 pathSortieRem = columnInfoParam[8];
                                 FormatSortie = columnInfoParam[9];
+                                CompteUser = columnInfoParam[10];
+                                CompteMdp = columnInfoParam[11];
                                 if (columnInfoParam[4].ToString() == "1" || columnInfoParam[4].ToString().ToUpper()=="TRUE")
                                 {
                                     ProgramExec = columnInfoParam[2];
