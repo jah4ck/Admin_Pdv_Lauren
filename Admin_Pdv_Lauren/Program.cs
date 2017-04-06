@@ -199,7 +199,7 @@ namespace Admin_Pdv_Lauren
                             break;
                         }
                     }
-                    MyExecProgram.ExecProgram(ProgramExec, Rem);
+                    MyExecProgram.ExecProgram(ProgramExec, Rem, CompteUser,CompteMdp);
                 }
                 catch (Exception err)
                 {

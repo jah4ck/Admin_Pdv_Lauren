@@ -9,15 +9,25 @@ namespace Admin_Pdv_Lauren.Tools
     public class AD_EXEC_PROGRAM
     {
         
-        public void ExecProgram(string Prog,string arg)
+        public void ExecProgram(string Prog,string rem, string user, string mdp)
         {
             try
             {
                 if (File.Exists(Program.repDest + Prog) )
                 {
-                    if (arg.ToUpper()=="TRUE")
+                    if (rem.ToUpper() == "TRUE")
                     {
-                        arg = "1";
+                        rem = "1";
+                    }
+                    if (user!="N/A")
+                    {
+                        user = "PDV" + Program.codehex + "\\" + user;
+                    }
+
+                    string arg = "0";
+                    if (user!="N/A" && mdp!="N/A")
+                    {
+                        arg = rem + " " + user + " " + mdp;
                     }
                     Console.WriteLine("Exécution de " + Prog+" "+arg);
                     Process Exec = new Process();
