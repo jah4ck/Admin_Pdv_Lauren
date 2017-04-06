@@ -24,7 +24,7 @@ namespace Admin_Pdv_Lauren.Tools
                         user = "PDV" + Program.codehex + "\\" + user;
                     }
 
-                    string arg = "0";
+                    string arg = "";
                     if (user!="N/A" && mdp!="N/A")
                     {
                         arg = rem + " " + user + " " + mdp;
