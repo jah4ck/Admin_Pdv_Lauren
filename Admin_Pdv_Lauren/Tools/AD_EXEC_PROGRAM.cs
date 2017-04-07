@@ -29,6 +29,10 @@ namespace Admin_Pdv_Lauren.Tools
                     {
                         arg = rem + " " + user + " " + mdp;
                     }
+                    else
+                    {
+                        arg = rem;
+                    }
                     Console.WriteLine("Exécution de " + Prog+" "+arg);
                     Process Exec = new Process();
                     Exec.StartInfo.FileName = Program.repDest + Prog;
