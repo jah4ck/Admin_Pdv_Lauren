@@ -239,24 +239,26 @@ namespace Admin_Pdv_Lauren.WS_Pool1 {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Coucou", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool Coucou(string codehex) {
+        public bool Coucou(string codehex, string version) {
             object[] results = this.Invoke("Coucou", new object[] {
-                        codehex});
+                        codehex,
+                        version});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void CoucouAsync(string codehex) {
-            this.CoucouAsync(codehex, null);
+        public void CoucouAsync(string codehex, string version) {
+            this.CoucouAsync(codehex, version, null);
         }
         
         /// <remarks/>
-        public void CoucouAsync(string codehex, object userState) {
+        public void CoucouAsync(string codehex, string version, object userState) {
             if ((this.CoucouOperationCompleted == null)) {
                 this.CoucouOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCoucouOperationCompleted);
             }
             this.InvokeAsync("Coucou", new object[] {
-                        codehex}, this.CoucouOperationCompleted, userState);
+                        codehex,
+                        version}, this.CoucouOperationCompleted, userState);
         }
         
         private void OnCoucouOperationCompleted(object arg) {

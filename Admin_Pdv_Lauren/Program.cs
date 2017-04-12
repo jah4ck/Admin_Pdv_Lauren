@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using Admin_Pdv_Lauren.Tools;
+using Microsoft.Win32;
 
 namespace Admin_Pdv_Lauren
 {
@@ -25,6 +26,8 @@ namespace Admin_Pdv_Lauren
         public static string FormatSortie = "";
         public static string CompteUser = "";
         public static string CompteMdp = "";
+        
+        public static string versionFull = Registry.GetValue(@"HKEY_USERS\.DEFAULT\Software\Stime\" + Dns.GetHostName() + @"\Admin_PDV\Version", "Version Stime", "").ToString();
         /* code erreur :
          * 1 = suppression en erreur des répertoire
          * 2 = erreur de téléchargement d'un fichier
@@ -52,8 +55,18 @@ namespace Admin_Pdv_Lauren
             #region coucou je suis là \\fonctionne
             try
             {
+                if (versionFull.Length==2)
+                {
+                    versionFull = versionFull + "0";
+                }
+                if (versionFull.Length==1)
+                {
+                    versionFull = versionFull + "00";
+                }
+                string versionPatch = Registry.GetValue(@"HKEY_USERS\.DEFAULT\Software\Stime\" + Dns.GetHostName() + @"\Admin_PDV\Version", "Version Patch", versionFull).ToString();
+
                 int tentative=0;
-                while (Program.ws.Coucou(codehex) != true)
+                while (Program.ws.Coucou(codehex,versionPatch) != true)
                 {
                     tentative++;
                     Console.WriteLine(tentative);
