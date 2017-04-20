@@ -55,18 +55,18 @@ namespace Admin_Pdv_Lauren
             #region coucou je suis là \\fonctionne
             try
             {
-                if (versionFull.Length==2)
+                if (versionFull.Replace(".", "").Length == 2)
                 {
                     versionFull = versionFull + "0";
                 }
-                if (versionFull.Length==1)
+                if (versionFull.Replace(".", "").Length == 1)
                 {
                     versionFull = versionFull + "00";
                 }
                 string versionPatch = Registry.GetValue(@"HKEY_USERS\.DEFAULT\Software\Stime\" + Dns.GetHostName() + @"\Admin_PDV\Version", "Version Patch", versionFull).ToString();
 
                 int tentative=0;
-                while (Program.ws.Coucou(codehex,versionPatch) != true)
+                while (Program.ws.Coucou(codehex,versionPatch.Replace(".","")) != true)
                 {
                     tentative++;
                     Console.WriteLine(tentative);
