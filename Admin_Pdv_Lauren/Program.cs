@@ -10,7 +10,7 @@ using Microsoft.Win32;
 namespace Admin_Pdv_Lauren
 {
     class Program
-    {
+    {//test
         public static WS_Pool1.WS_Rem_File_PDV ws = new WS_Pool1.WS_Rem_File_PDV();
         public static string codehex = Dns.GetHostName().Substring(2,4);
         public static string IdScenario = "";
